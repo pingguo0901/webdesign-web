@@ -45,8 +45,8 @@ img{max-width:100%;display:block}
 .nav nav a:hover{color:var(--gold)}
 .btn-nav{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#0a0a0a!important;padding:8px 20px;border-radius:20px;font-weight:700;transition:all .2s}
 .btn-nav:hover{background:var(--gold-light);box-shadow:0 0 20px rgba(212,175,55,.3)}
-.lang-switch{background:none;border:1px solid var(--border-strong);color:var(--gold);padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;margin-left:4px}
-.lang-switch:hover{background:rgba(212,175,55,.1);box-shadow:0 0 12px rgba(212,175,55,.15)}
+.lang-switch{background:rgba(212,175,55,.08);border:1px solid var(--border-strong);color:var(--gold);padding:10px 22px;border-radius:20px;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s;margin-left:4px;letter-spacing:.5px}
+.lang-switch:hover{background:rgba(212,175,55,.18);box-shadow:0 0 20px rgba(212,175,55,.25);border-color:var(--gold)}
 .lang-switch .lang-zh,.lang-switch .lang-en{display:none}
 html[lang="zh"] .lang-switch .lang-zh{display:inline}
 html[lang="en"] .lang-switch .lang-en{display:inline}
