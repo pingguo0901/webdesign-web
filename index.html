@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星域网站设计 — 专业定制网站 & 模板</title>
+  <meta name="description" content="星域网站设计提供专业定制网站开发、响应式模板、企业官网搭建服务。高品质、快速交付、价格透明。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <header class="header">
+    <div class="container nav">
+      <a href="#" class="logo">🌟 星域网站设计</a>
+      <nav>
+        <a href="#services">服务产品</a>
+        <a href="#templates">网站模板</a>
+        <a href="#process">合作流程</a>
+        <a href="#pricing">价格方案</a>
+        <a href="#contact" class="btn-nav">立即咨询</a>
+      </nav>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#services" onclick="toggleMenu()">服务产品</a>
+      <a href="#templates" onclick="toggleMenu()">网站模板</a>
+      <a href="#process" onclick="toggleMenu()">合作流程</a>
+      <a href="#pricing" onclick="toggleMenu()">价格方案</a>
+      <a href="#contact" onclick="toggleMenu()">立即咨询</a>
+    </div>
+  </header>
+
+  <!-- 首屏 Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>打造你的专属网站</h1>
+      <p class="hero-sub">专业定制开发 · 精美模板即选即用 · 全响应式设计</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">了解服务</a>
+        <a href="#contact" class="btn-outline">免费咨询</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 服务产品 -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section-title">服务产品</h2>
+      <p class="section-desc">从个人品牌到企业官网，覆盖全场景需求</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🏢</div>
+          <h3>企业官网定制</h3>
+          <p>量身打造企业品牌官网，包含公司介绍、产品展示、新闻动态、在线留言等模块，助力企业形象升级。</p>
+          <span class="tag">热门</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛒</div>
+          <h3>电商商城搭建</h3>
+          <p>商品展示、购物车、在线支付、订单管理，一站式电商解决方案，快速开启线上销售渠道。</p>
+          <span class="tag">推荐</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3>响应式 H5 页面</h3>
+          <p>活动推广、产品发布、品牌故事等单页/多页 H5，完美适配手机、平板、电脑等所有设备。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎨</div>
+          <h3>UI 设计 + 前端开发</h3>
+          <p>专业的 UI 视觉设计配合高质量前端代码实现，像素级还原设计稿，流畅用户体验。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔧</div>
+          <h3>网站维护 & 优化</h3>
+          <p>内容更新、性能优化、安全加固、SEO 优化，让你的网站持续保持最佳状态。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚀</div>
+          <h3>小程序开发</h3>
+          <p>微信小程序、支付宝小程序定制开发，与网站数据互通，覆盖更多用户触达渠道。</p>
+          <span class="tag">新</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 网站模板 -->
+  <section id="templates" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">精选模板</h2>
+      <p class="section-desc">即选即用，快速上线，专业设计品质</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-img placeholder">🏢</div>
+          <h3>企业官网模板</h3>
+          <p>大气稳重风格，适合制造、科技、服务业</p>
+          <span class="price">¥2,999 起</span>
+        </div>
+        <div class="card">
+          <div class="card-img placeholder">🛍️</div>
+          <h3>电商商城模板</h3>
+          <p>潮流设计，商品展示与购物体验并重</p>
+          <span class="price">¥4,999 起</span>
+        </div>
+        <div class="card">
+          <div class="card-img placeholder">📝</div>
+          <h3>个人博客模板</h3>
+          <p>极简美学，专注内容呈现与阅读体验</p>
+          <span class="price">¥1,999 起</span>
+        </div>
+        <div class="card">
+          <div class="card-img placeholder">📋</div>
+          <h3>Landing Page 模板</h3>
+          <p>转化导向设计，适合产品发布与活动推广</p>
+          <span class="price">¥1,499 起</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 合作流程 -->
+  <section id="process" class="section">
+    <div class="container">
+      <h2 class="section-title">合作流程</h2>
+      <p class="section-desc">透明高效，每一步都清晰可见</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>需求沟通</h4>
+          <p>了解你的业务目标、功能需求、设计偏好</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>方案 & 报价</h4>
+          <p>输出项目方案、时间规划与透明报价</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>设计定稿</h4>
+          <p>UI 视觉设计，修改至满意后确认定稿</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>开发上线</h4>
+          <p>前端开发、测试、部署上线与交付</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 价格方案 -->
+  <section id="pricing" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">价格方案</h2>
+      <p class="section-desc">透明定价，无隐藏费用</p>
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <h3>基础版</h3>
+          <div class="price-tag">¥2,999</div>
+          <ul>
+            <li>5 个页面以内</li>
+            <li>响应式设计</li>
+            <li>基础 SEO 优化</li>
+            <li>1 年免费维护</li>
+            <li>标准交付 7 天</li>
+          </ul>
+          <a href="#contact" class="btn-primary">选择方案</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="badge">最受欢迎</div>
+          <h3>专业版</h3>
+          <div class="price-tag">¥5,999</div>
+          <ul>
+            <li>10 个页面以内</li>
+            <li>响应式设计</li>
+            <li>深度 SEO 优化</li>
+            <li>1 年免费维护</li>
+            <li>后台管理系统</li>
+            <li>标准交付 15 天</li>
+          </ul>
+          <a href="#contact" class="btn-primary">选择方案</a>
+        </div>
+        <div class="pricing-card">
+          <h3>旗舰版</h3>
+          <div class="price-tag">¥12,999</div>
+          <ul>
+            <li>不限页面数量</li>
+            <li>定制 UI 设计</li>
+            <li>全栈开发方案</li>
+            <li>2 年免费维护</li>
+            <li>数据库 + API 集成</li>
+            <li>标准交付 30 天</li>
+          </ul>
+          <a href="#contact" class="btn-primary">选择方案</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系咨询 -->
+  <section id="contact" class="section">
+    <div class="container contact-wrapper">
+      <div class="contact-info">
+        <h2 class="section-title" style="text-align:left">立即咨询</h2>
+        <p>告诉我们你的需求，我们将在 24 小时内回复。</p>
+        <div class="contact-methods">
+          <div class="contact-item">📧 <span>contact@stellarelite-xingyuzhenlv.com</span></div>
+          <div class="contact-item">💬 <span>Discord: 星域集团 AI帝国</span></div>
+          <div class="contact-item">🌐 <span>www.stellarelite-xingyuzhenlv.com</span></div>
+        </div>
+      </div>
+      <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="你的名字" required>
+        <input type="email" placeholder="电子邮箱" required>
+        <select required>
+          <option value="">选择服务类型</option>
+          <option>企业官网定制</option>
+          <option>电商商城搭建</option>
+          <option>响应式 H5 页面</option>
+          <option>UI 设计 + 前端开发</option>
+          <option>网站维护 & 优化</option>
+          <option>小程序开发</option>
+          <option>其他咨询</option>
+        </select>
+        <textarea rows="4" placeholder="描述你的需求..."></textarea>
+        <button type="submit" class="btn-primary">提交需求</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 星域集团 · 星域网站设计。保留所有权利。</p>
+      <p>Powered by StellarElite Group</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
