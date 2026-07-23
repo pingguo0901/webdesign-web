@@ -45,6 +45,12 @@ img{max-width:100%;display:block}
 .nav nav a:hover{color:var(--gold)}
 .btn-nav{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#0a0a0a!important;padding:8px 20px;border-radius:20px;font-weight:700;transition:all .2s}
 .btn-nav:hover{background:var(--gold-light);box-shadow:0 0 20px rgba(212,175,55,.3)}
+.lang-switch{background:none;border:1px solid var(--border-strong);color:var(--gold);padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;margin-left:4px}
+.lang-switch:hover{background:rgba(212,175,55,.1);box-shadow:0 0 12px rgba(212,175,55,.15)}
+.lang-switch .lang-zh,.lang-switch .lang-en{display:none}
+html[lang="zh"] .lang-switch .lang-zh{display:inline}
+html[lang="en"] .lang-switch .lang-en{display:inline}
+.mobile-lang{margin:8px 0;width:fit-content}
 .menu-toggle{display:none;font-size:1.5rem;background:none;border:none;cursor:pointer;color:var(--gold)}
 .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--bg);padding:16px 24px;flex-direction:column;gap:12px;border-bottom:1px solid var(--border);z-index:99}
 .mobile-menu a{font-size:1rem;padding:8px 0;color:var(--text)}
@@ -54,7 +60,7 @@ img{max-width:100%;display:block}
 .hero{padding:160px 24px 100px;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,.08) 0%,transparent 60%),linear-gradient(180deg,#0f0f0f 0%,#0a0a0a 100%);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:200px;background:linear-gradient(180deg,transparent,var(--gold),transparent);opacity:.3}
 .hero h1{font-size:3rem;font-weight:800;color:var(--text);margin-bottom:16px;letter-spacing:-.02em}
-.hero h1 span{background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-highlight{background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-sub{font-size:1.2rem;color:var(--text-light);margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto}
 .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 

@@ -1,243 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebHub — Professional Custom Websites & Templates</title>
-  <meta name="description" content="WebHub provides professional custom website development, responsive templates, and corporate site building services. High quality, fast delivery, transparent pricing.">
+  <title data-i18n="title">WebHub — Professional Custom Websites & Templates</title>
+  <meta name="description" content="WebHub provides professional custom website development, responsive templates, and corporate site building services.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header -->
   <header class="header">
     <div class="container nav">
       <a href="#" class="logo"><span class="logo-white">Web</span><span class="logo-gold">Hub</span></a>
       <nav>
-        <a href="#services">Services</a>
-        <a href="#templates">Templates</a>
-        <a href="#process">Process</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact" class="btn-nav">Get Started</a>
+        <a href="#services" data-i18n="navServices">Services</a>
+        <a href="#templates" data-i18n="navTemplates">Templates</a>
+        <a href="#process" data-i18n="navProcess">Process</a>
+        <a href="#pricing" data-i18n="navPricing">Pricing</a>
+        <a href="#contact" class="btn-nav" data-i18n="navCTA">Get Started</a>
+        <button class="lang-switch" onclick="switchLang()" title="Switch Language">
+          <span class="lang-zh">EN</span><span class="lang-en">中</span>
+        </button>
       </nav>
       <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#services" onclick="toggleMenu()">Services</a>
-      <a href="#templates" onclick="toggleMenu()">Templates</a>
-      <a href="#process" onclick="toggleMenu()">Process</a>
-      <a href="#pricing" onclick="toggleMenu()">Pricing</a>
-      <a href="#contact" onclick="toggleMenu()">Get Started</a>
+      <a href="#services" onclick="toggleMenu()" data-i18n="navServices">Services</a>
+      <a href="#templates" onclick="toggleMenu()" data-i18n="navTemplates">Templates</a>
+      <a href="#process" onclick="toggleMenu()" data-i18n="navProcess">Process</a>
+      <a href="#pricing" onclick="toggleMenu()" data-i18n="navPricing">Pricing</a>
+      <a href="#contact" onclick="toggleMenu()" class="btn-nav" data-i18n="navCTA">Get Started</a>
+      <button class="lang-switch mobile-lang" onclick="switchLang()">
+        <span class="lang-zh">EN</span><span class="lang-en">中</span>
+      </button>
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <h1>Build Your <span>Dream Website</span></h1>
-      <p class="hero-sub">Professional custom development · Premium templates ready to use · Fully responsive design</p>
+      <h1><span data-i18n="heroTitle">Build Your</span> <span class="hero-highlight" data-i18n="heroHighlight">Dream Website</span></h1>
+      <p class="hero-sub" data-i18n="heroSub">Professional custom development · Premium templates · Fully responsive design</p>
       <div class="hero-btns">
-        <a href="#services" class="btn-primary">Explore Services</a>
-        <a href="#contact" class="btn-outline">Free Consultation</a>
+        <a href="#services" class="btn-primary" data-i18n="heroBtn1">Explore Services</a>
+        <a href="#contact" class="btn-outline" data-i18n="heroBtn2">Free Consultation</a>
       </div>
     </div>
   </section>
 
-  <!-- Services -->
   <section id="services" class="section">
     <div class="container">
-      <h2 class="section-title">Our Services</h2>
-      <p class="section-desc">From personal brands to enterprise sites, we cover every need</p>
+      <h2 class="section-title" data-i18n="secServices">Our Services</h2>
+      <p class="section-desc" data-i18n="servicesDesc">From personal brands to enterprise sites, we cover every need</p>
       <div class="cards">
-        <div class="card">
-          <div class="card-icon">🏢</div>
-          <h3>Corporate Website</h3>
-          <p>Tailor-made enterprise brand websites with company profiles, product showcases, news, and contact modules to elevate your brand image.</p>
-          <span class="tag">Popular</span>
-        </div>
-        <div class="card">
-          <div class="card-icon">🛒</div>
-          <h3>E-Commerce Store</h3>
-          <p>Product display, shopping cart, online payments, order management — a complete e-commerce solution to launch your online sales channel.</p>
-          <span class="tag">Recommended</span>
-        </div>
-        <div class="card">
-          <div class="card-icon">📱</div>
-          <h3>Responsive Landing Pages</h3>
-          <p>Campaign promotions, product launches, brand stories — single or multi-page designs that look perfect on mobile, tablet, and desktop.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🎨</div>
-          <h3>UI Design + Frontend Dev</h3>
-          <p>Professional UI visual design paired with high-quality frontend code, pixel-perfect design implementation, and smooth user experience.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🔧</div>
-          <h3>Maintenance & Optimization</h3>
-          <p>Content updates, performance tuning, security hardening, and SEO optimization to keep your website at peak performance.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🚀</div>
-          <h3>Mini Program Development</h3>
-          <p>WeChat and Alipay mini program development, seamlessly integrated with your website data to reach more users.</p>
-          <span class="tag">New</span>
-        </div>
+        <div class="card"><div class="card-icon">🏢</div><h3 data-i18n="sv1Title">Corporate Website</h3><p data-i18n="sv1Desc">Tailor-made enterprise brand websites with company profiles, product showcases, news, and contact modules.</p><span class="tag" data-i18n="tagPopular">Popular</span></div>
+        <div class="card"><div class="card-icon">🛒</div><h3 data-i18n="sv2Title">E-Commerce Store</h3><p data-i18n="sv2Desc">Product display, shopping cart, online payments, order management — a complete e-commerce solution.</p><span class="tag" data-i18n="tagRecommended">Recommended</span></div>
+        <div class="card"><div class="card-icon">📱</div><h3 data-i18n="sv3Title">Responsive Landing Pages</h3><p data-i18n="sv3Desc">Campaign promotions, product launches, brand stories — single or multi-page designs for all devices.</p></div>
+        <div class="card"><div class="card-icon">🎨</div><h3 data-i18n="sv4Title">UI Design + Frontend Dev</h3><p data-i18n="sv4Desc">Professional UI visual design paired with high-quality frontend code, pixel-perfect implementation.</p></div>
+        <div class="card"><div class="card-icon">🔧</div><h3 data-i18n="sv5Title">Maintenance & Optimization</h3><p data-i18n="sv5Desc">Content updates, performance tuning, security hardening, and SEO optimization.</p></div>
+        <div class="card"><div class="card-icon">🚀</div><h3 data-i18n="sv6Title">Mini Program Development</h3><p data-i18n="sv6Desc">WeChat and Alipay mini program development, seamlessly integrated with your website data.</p><span class="tag" data-i18n="tagNew">New</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Templates -->
   <section id="templates" class="section section-alt">
     <div class="container">
-      <h2 class="section-title">Featured Templates</h2>
-      <p class="section-desc">Ready to use, fast to launch, with professional design quality</p>
+      <h2 class="section-title" data-i18n="secTemplates">Featured Templates</h2>
+      <p class="section-desc" data-i18n="templatesDesc">Ready to use, fast to launch, professional design quality</p>
       <div class="cards">
-        <div class="card">
-          <div class="card-img placeholder">🏢</div>
-          <h3>Corporate Template</h3>
-          <p>Elegant and professional style, ideal for manufacturing, tech, and service industries</p>
-          <span class="price">From $399</span>
-        </div>
-        <div class="card">
-          <div class="card-img placeholder">🛍️</div>
-          <h3>E-Commerce Template</h3>
-          <p>Trendy design that balances product showcase with shopping experience</p>
-          <span class="price">From $699</span>
-        </div>
-        <div class="card">
-          <div class="card-img placeholder">📝</div>
-          <h3>Blog Template</h3>
-          <p>Minimalist aesthetics focused on content presentation and reading experience</p>
-          <span class="price">From $249</span>
-        </div>
-        <div class="card">
-          <div class="card-img placeholder">📋</div>
-          <h3>Landing Page Template</h3>
-          <p>Conversion-oriented design, perfect for product launches and campaign promotions</p>
-          <span class="price">From $199</span>
-        </div>
+        <div class="card"><div class="card-img placeholder">🏢</div><h3 data-i18n="t1Title">Corporate Template</h3><p data-i18n="t1Desc">Elegant and professional style, ideal for manufacturing, tech, and service industries</p><span class="price"><span data-i18n="priceFrom">From </span>$399</span></div>
+        <div class="card"><div class="card-img placeholder">🛍️</div><h3 data-i18n="t2Title">E-Commerce Template</h3><p data-i18n="t2Desc">Trendy design that balances product showcase with shopping experience</p><span class="price"><span data-i18n="priceFrom">From </span>$699</span></div>
+        <div class="card"><div class="card-img placeholder">📝</div><h3 data-i18n="t3Title">Blog Template</h3><p data-i18n="t3Desc">Minimalist aesthetics focused on content presentation and reading experience</p><span class="price"><span data-i18n="priceFrom">From </span>$249</span></div>
+        <div class="card"><div class="card-img placeholder">📋</div><h3 data-i18n="t4Title">Landing Page Template</h3><p data-i18n="t4Desc">Conversion-oriented design, perfect for product launches and campaign promotions</p><span class="price"><span data-i18n="priceFrom">From </span>$199</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Process -->
   <section id="process" class="section">
     <div class="container">
-      <h2 class="section-title">Our Process</h2>
-      <p class="section-desc">Transparent and efficient — every step is clearly visible</p>
+      <h2 class="section-title" data-i18n="secProcess">Our Process</h2>
+      <p class="section-desc" data-i18n="processDesc">Transparent and efficient — every step is clearly visible</p>
       <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h4>Discovery</h4>
-          <p>Understand your business goals, functional needs, and design preferences</p>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h4>Proposal & Quote</h4>
-          <p>Project plan, timeline, and transparent pricing delivered</p>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h4>Design Approval</h4>
-          <p>UI visual design with revisions until you're satisfied</p>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <h4>Development & Launch</h4>
-          <p>Frontend development, testing, deployment, and handover</p>
-        </div>
+        <div class="step"><div class="step-num">1</div><h4 data-i18n="p1Title">Discovery</h4><p data-i18n="p1Desc">Understand your business goals, functional needs, and design preferences</p></div>
+        <div class="step"><div class="step-num">2</div><h4 data-i18n="p2Title">Proposal & Quote</h4><p data-i18n="p2Desc">Project plan, timeline, and transparent pricing delivered</p></div>
+        <div class="step"><div class="step-num">3</div><h4 data-i18n="p3Title">Design Approval</h4><p data-i18n="p3Desc">UI visual design with revisions until you're satisfied</p></div>
+        <div class="step"><div class="step-num">4</div><h4 data-i18n="p4Title">Development & Launch</h4><p data-i18n="p4Desc">Frontend development, testing, deployment, and handover</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Pricing -->
   <section id="pricing" class="section section-alt">
     <div class="container">
-      <h2 class="section-title">Pricing Plans</h2>
-      <p class="section-desc">Transparent pricing with no hidden fees</p>
+      <h2 class="section-title" data-i18n="secPricing">Pricing Plans</h2>
+      <p class="section-desc" data-i18n="pricingDesc">Transparent pricing with no hidden fees</p>
       <div class="pricing-cards">
         <div class="pricing-card">
-          <h3>Starter</h3>
-          <div class="price-tag">$399</div>
+          <h3 data-i18n="planStarter">Starter</h3><div class="price-tag">$399</div>
           <ul>
-            <li>Up to 5 pages</li>
-            <li>Responsive design</li>
-            <li>Basic SEO optimization</li>
-            <li>1 year free maintenance</li>
-            <li>7-day delivery</li>
+            <li data-i18n="starter1">Up to 5 pages</li><li data-i18n="starter2">Responsive design</li><li data-i18n="starter3">Basic SEO optimization</li><li data-i18n="starter4">1 year free maintenance</li><li data-i18n="starter5">7-day delivery</li>
           </ul>
-          <a href="#contact" class="btn-primary">Choose Plan</a>
+          <a href="#contact" class="btn-primary" data-i18n="choosePlan">Choose Plan</a>
         </div>
         <div class="pricing-card featured">
-          <div class="badge">Most Popular</div>
-          <h3>Professional</h3>
-          <div class="price-tag">$799</div>
+          <div class="badge" data-i18n="planPopular">Most Popular</div>
+          <h3 data-i18n="planPro">Professional</h3><div class="price-tag">$799</div>
           <ul>
-            <li>Up to 10 pages</li>
-            <li>Responsive design</li>
-            <li>Advanced SEO optimization</li>
-            <li>1 year free maintenance</li>
-            <li>Admin dashboard</li>
-            <li>15-day delivery</li>
+            <li data-i18n="pro1">Up to 10 pages</li><li data-i18n="pro2">Responsive design</li><li data-i18n="pro3">Advanced SEO optimization</li><li data-i18n="pro4">1 year free maintenance</li><li data-i18n="pro5">Admin dashboard</li><li data-i18n="pro6">15-day delivery</li>
           </ul>
-          <a href="#contact" class="btn-primary">Choose Plan</a>
+          <a href="#contact" class="btn-primary" data-i18n="choosePlan">Choose Plan</a>
         </div>
         <div class="pricing-card">
-          <h3>Enterprise</h3>
-          <div class="price-tag">$1,699</div>
+          <h3 data-i18n="planEnterprise">Enterprise</h3><div class="price-tag">$1,699</div>
           <ul>
-            <li>Unlimited pages</li>
-            <li>Custom UI design</li>
-            <li>Full-stack development</li>
-            <li>2 years free maintenance</li>
-            <li>Database + API integration</li>
-            <li>30-day delivery</li>
+            <li data-i18n="ent1">Unlimited pages</li><li data-i18n="ent2">Custom UI design</li><li data-i18n="ent3">Full-stack development</li><li data-i18n="ent4">2 years free maintenance</li><li data-i18n="ent5">Database + API integration</li><li data-i18n="ent6">30-day delivery</li>
           </ul>
-          <a href="#contact" class="btn-primary">Choose Plan</a>
+          <a href="#contact" class="btn-primary" data-i18n="choosePlan">Choose Plan</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact" class="section">
     <div class="container contact-wrapper">
       <div class="contact-info">
-        <h2 class="section-title" style="text-align:left">Get in Touch</h2>
-        <p>Tell us about your project and we'll respond within 24 hours.</p>
+        <h2 class="section-title" style="text-align:left" data-i18n="secContact">Get in Touch</h2>
+        <p data-i18n="contactDesc">Tell us about your project and we'll respond within 24 hours.</p>
         <div class="contact-methods">
           <div class="contact-item">📧 <span>contact@stellarelite-xingyuzhenlv.com</span></div>
-          <div class="contact-item">💬 <span>Discord: StellarElite Group</span></div>
+          <div class="contact-item">💬 <span data-i18n="contactGroup">Discord: StellarElite Group</span></div>
           <div class="contact-item">🌐 <span>www.stellarelite-xingyuzhenlv.com</span></div>
         </div>
       </div>
       <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Email Address" required>
-        <select required>
-          <option value="">Select Service</option>
-          <option>Corporate Website</option>
-          <option>E-Commerce Store</option>
-          <option>Responsive Landing Page</option>
-          <option>UI Design + Frontend Dev</option>
-          <option>Maintenance & Optimization</option>
-          <option>Mini Program Development</option>
-          <option>Other</option>
+        <input type="text" data-i18n-placeholder="formName" placeholder="Your Name" required>
+        <input type="email" data-i18n-placeholder="formEmail" placeholder="Email Address" required>
+        <select id="serviceSelect" required>
+          <option value="" data-i18n="selectDefault">Select Service</option>
+          <option data-i18n="select1">Corporate Website</option>
+          <option data-i18n="select2">E-Commerce Store</option>
+          <option data-i18n="select3">Responsive Landing Page</option>
+          <option data-i18n="select4">UI Design + Frontend Dev</option>
+          <option data-i18n="select5">Maintenance & Optimization</option>
+          <option data-i18n="select6">Mini Program Development</option>
+          <option data-i18n="select7">Other</option>
         </select>
-        <textarea rows="4" placeholder="Describe your project..."></textarea>
-        <button type="submit" class="btn-primary">Send Message</button>
+        <textarea rows="4" data-i18n-placeholder="formMsg" placeholder="Describe your project..." required></textarea>
+        <button type="submit" class="btn-primary" data-i18n="formSubmit">Send Message</button>
       </form>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 WebHub · StellarElite Group. All rights reserved.</p>
-      <p>Powered by StellarElite Group</p>
+      <p data-i18n="footer1">© 2026 WebHub · StellarElite Group. All rights reserved.</p>
+      <p data-i18n="footer2">Powered by StellarElite Group</p>
     </div>
   </footer>
 
+  <script src="lang.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
