@@ -37,7 +37,9 @@ img{max-width:100%;display:block}
 /* Header */
 .header{position:fixed;top:0;left:0;right:0;background:rgba(10,10,10,.95);backdrop-filter:blur(20px);z-index:100;border-bottom:1px solid var(--border)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-size:1.25rem;font-weight:700;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo{font-size:1.25rem;font-weight:700;display:flex;align-items:center}
+.logo-white{color:#fff}
+.logo-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .nav nav{display:flex;gap:32px;align-items:center}
 .nav nav a{font-size:.9rem;color:var(--text-muted);transition:color .2s}
 .nav nav a:hover{color:var(--gold)}
