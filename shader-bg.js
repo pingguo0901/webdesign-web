@@ -1,117 +1,82 @@
-/* WebHub — WebGL Shader Background */
-
+/* WebHub — WebGL Shader Background (from document) */
 (function() {
+  'use strict';
   try {
-  const canvas = document.createElement('canvas');
-  canvas.id = 'shader-bg';
-  canvas.style.cssText = 'position:fixed;inset:0;z-index:0;pointer-events:none;';
-  document.body.prepend(canvas);
+    const c = document.createElement('canvas');
+    c.style.cssText = 'position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.4';
+    document.body.insertBefore(c, document.body.firstChild);
 
-  const gl = canvas.getContext('webgl2', { alpha: false });
-  if (!gl) { canvas.style.display = 'none'; return; }
+    const gl = c.getContext('webgl2', { alpha: false, premultipliedAlpha: false }) || c.getContext('webgl');
+    if (!gl) return;
 
-  const vertSrc = `#version 300 es
-precision highp float;
-layout(location=0) in vec2 a_pos;
-void main(){ gl_Position=vec4(a_pos,0.0,1.0); }`;
+    // Vertex shader — fullscreen quad
+    const vs = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vs, `attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}`);
+    gl.compileShader(vs);
+    if (!gl.getShaderParameter(vs, gl.COMPILE_STATUS)) throw new Error('vs');
 
-  const fragSrc = `#version 300 es
-precision highp float;
-out vec4 fragColor;
-uniform vec2 u_res;
-uniform float u_time;
+    // Fragment shader — animated procedural background
+    const isGL2 = gl.getParameter(gl.VERSION).includes('2.0') === false;
+    const fs = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fs, (isGL2 ? '#version 300 es\nprecision highp float;\nout vec4 O;\n' : 'precision highp float;\n') + `
+uniform vec2 r;
+uniform float t;
 
-float hash(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
-
-float noise(vec2 p){
-  vec2 i=floor(p), f=fract(p);
-  float a=hash(i), b=hash(i+vec2(1,0)), c=hash(i+vec2(0,1)), d=hash(i+vec2(1,1));
-  vec2 u=f*f*(3.0-2.0*f);
-  return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);
-}
+float H(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float N(vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.-2.*f);return mix(mix(H(i),H(i+vec2(1,0)),u.x),mix(H(i+vec2(0,1)),H(i+vec2(1,1)),u.x),u.y);}
+float F(vec2 p){float a=0.,b=1.;for(int i=0;i<6;i++){a+=b*N(p);p*=2.;b*=.5;}return a;}
 
 void main(){
-  vec2 uv=(gl_FragCoord.xy-0.5*u_res)/min(u_res.x,u_res.y);
-  float t=u_time*0.15;
-
-  float n1=noise(uv*2.5+vec2(t*0.3,0.0));
-  float n2=noise(uv*3.0+vec2(-t*0.2,t*0.15));
-  float n3=noise(uv*4.0+vec2(t*0.1,-t*0.2));
-
-  float flow=sin(uv.x*4.0+t+n1*2.0)*cos(uv.y*3.5+t*0.8+n2*2.0);
-  float line=abs(sin(uv.y*12.0+flow*2.0+t*0.5))*abs(cos(uv.x*10.0-flow+t*0.3));
-  line=smoothstep(0.85,0.95,line)*smoothstep(0.0,0.08,line);
-
-  float pulse=sin(length(uv)*6.0-t*2.0+n3)*0.5+0.5;
-  pulse*=exp(-length(uv)*1.8);
-
-  float dist=length(uv);
-  float vignette=1.0-smoothstep(0.4,1.6,dist);
-
-  vec3 gold=vec3(0.83,0.69,0.22);
-  vec3 darkGold=vec3(0.6,0.45,0.1);
-  vec3 bg=vec3(0.04,0.04,0.06);
-
-  vec3 col=bg;
-  col+=gold*line*0.25;
-  col+=darkGold*pulse*0.15;
-  col+=gold*vignette*n1*0.03;
-  col=mix(col,darkGold,flow*0.05+0.02);
-
-  fragColor=vec4(col,1.0);
-}`;
-
-  function compile(type, src) {
-    const sh = gl.createShader(type);
-    gl.shaderSource(sh, src);
-    gl.compileShader(sh);
-    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
-      throw new Error(gl.getShaderInfoLog(sh) || 'shader error');
+  vec2 uv=(gl_FragCoord.xy-.5*r)/min(r.x,r.y);
+  float d=length(uv),T=t*.12;
+  float n=F(uv*2.5+vec2(T*.3,sin(T*.2)));
+  float w=abs(sin(uv.y*8.+n*3.+T))*abs(cos(uv.x*6.-n+T*.5));
+  w=smoothstep(.7,.9,w);
+  float v=1.-smoothstep(.4,1.6,d);
+  vec3 G=vec3(.83,.69,.22);
+  vec3 col=vec3(.04,.04,.06)+G*w*.2+G*v*N(uv+T)*.03;
+  ${isGL2 ? 'O' : 'gl_FragColor'}=vec4(col,1);
+}`);
+    gl.compileShader(fs);
+    if (!gl.getShaderParameter(fs, gl.COMPILE_STATUS)) {
+      console.warn('shader compile failed, skipping bg');
+      return;
     }
-    return sh;
-  }
 
-  const vs = compile(gl.VERTEX_SHADER, vertSrc);
-  const fs = compile(gl.FRAGMENT_SHADER, fragSrc);
-  const prog = gl.createProgram();
-  gl.attachShader(prog, vs);
-  gl.attachShader(prog, fs);
-  gl.linkProgram(prog);
-  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-    throw new Error(gl.getProgramInfoLog(prog));
-  }
-  gl.useProgram(prog);
+    const pg = gl.createProgram();
+    gl.attachShader(pg, vs); gl.attachShader(pg, fs);
+    gl.linkProgram(pg);
+    if (!gl.getProgramParameter(pg, gl.LINK_STATUS)) return;
+    gl.useProgram(pg);
 
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
-  gl.enableVertexAttribArray(0);
-  gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]), gl.STATIC_DRAW);
+    const a = gl.getAttribLocation(pg, 'p');
+    gl.enableVertexAttribArray(a);
+    gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
 
-  const uRes = gl.getUniformLocation(prog, 'u_res');
-  const uTime = gl.getUniformLocation(prog, 'u_time');
+    const uR = gl.getUniformLocation(pg, 'r');
+    const uT = gl.getUniformLocation(pg, 't');
 
-  function resize() {
-    const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-    const w = Math.floor((canvas.clientWidth || window.innerWidth) * dpr);
-    const h = Math.floor((canvas.clientHeight || window.innerHeight) * dpr);
-    if (canvas.width !== w || canvas.height !== h) {
-      canvas.width = w;
-      canvas.height = h;
-      gl.viewport(0, 0, w, h);
+    function size() {
+      const px = Math.max(1, Math.min(2, devicePixelRatio || 1));
+      const w = Math.floor((c.clientWidth || innerWidth) * px);
+      const h = Math.floor((c.clientHeight || innerHeight) * px);
+      if (c.width !== w || c.height !== h) {
+        c.width = w; c.height = h;
+        gl.viewport(0, 0, w, h);
+      }
     }
-  }
 
-  function draw(now) {
-    resize();
-    const t = now * 0.001;
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.uniform1f(uTime, t);
-    gl.drawArrays(gl.TRIANGLES, 0, 6);
-    requestAnimationFrame(draw);
-  }
+    (function draw(now) {
+      size();
+      gl.uniform2f(uR, c.width, c.height);
+      gl.uniform1f(uT, now * 0.001);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      requestAnimationFrame(draw);
+    })(performance.now());
 
-  window.addEventListener('resize', resize, { passive: true });
-  requestAnimationFrame(draw);
-  } catch(e) { console.warn('Shader bg failed, continuing without it'); }
+    addEventListener('resize', size, { passive: true });
+  } catch(e) { /* silently skip */ }
 })();

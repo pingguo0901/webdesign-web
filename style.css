@@ -58,7 +58,7 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 .mobile-menu.open{display:flex}
 
 /* Hero */
-.hero{padding:160px 24px 100px;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,.08) 0%,transparent 60%),linear-gradient(180deg,#0f0f0f 0%,#0a0a0a 100%);position:relative;overflow:hidden}
+.hero{padding:160px 24px 100px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:200px;background:linear-gradient(180deg,transparent,var(--gold),transparent);opacity:.3}
 .hero-highlight{background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero h1{font-size:3rem;font-weight:800;color:var(--text);margin-bottom:16px;letter-spacing:-.02em;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
