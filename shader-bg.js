@@ -1,6 +1,7 @@
 /* WebHub — WebGL Shader Background */
 
 (function() {
+  try {
   const canvas = document.createElement('canvas');
   canvas.id = 'shader-bg';
   canvas.style.cssText = 'position:fixed;inset:0;z-index:0;pointer-events:none;';
@@ -112,4 +113,5 @@ void main(){
 
   window.addEventListener('resize', resize, { passive: true });
   requestAnimationFrame(draw);
+  } catch(e) { console.warn('Shader bg failed, continuing without it'); }
 })();
