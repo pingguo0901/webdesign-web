@@ -36,7 +36,7 @@ img{max-width:100%;display:block}
 ::selection{background:var(--gold);color:#0a0a0a}
 
 /* Header */
-.header{position:fixed;top:0;left:0;right:0;background:rgba(8,6,4,.8);backdrop-filter:blur(20px);z-index:100;border-bottom:1px solid rgba(212,175,55,.1)}
+.header{position:fixed;top:0;left:0;right:0;background:rgba(5,5,15,.75);backdrop-filter:blur(20px);z-index:100;border-bottom:1px solid rgba(255,255,255,.05)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{font-size:1.25rem;font-weight:700;display:flex;align-items:center}
 .logo-white{color:#fff}
@@ -80,10 +80,10 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 /* Cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
 .cards-2col{grid-template-columns:repeat(2,1fr)}
-.card{background:rgba(15,12,6,.85);padding:32px 28px;border-radius:var(--radius);border:1px solid var(--border);transition:all .3s;position:relative;overflow:hidden}
+.card{background:rgba(8,4,20,.85);padding:32px 28px;border-radius:var(--radius);border:1px solid var(--border);transition:all .3s;position:relative;overflow:hidden}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border-strong),transparent);opacity:0;transition:opacity .3s}
 .card:hover::before{opacity:1}
-.card:hover{transform:translateY(-4px);background:rgba(20,16,8,.92);border-color:var(--border-strong);box-shadow:var(--card-hover)}
+.card:hover{transform:translateY(-4px);background:rgba(12,6,30,.9);border-color:var(--border-strong);box-shadow:var(--card-hover)}
 .card-icon{font-size:2.5rem;margin-bottom:16px}
 .card h3{font-size:1.15rem;margin-bottom:8px;color:var(--text)}
 .card p{color:var(--text-light);font-size:.92rem;line-height:1.7}
@@ -102,9 +102,9 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 
 /* Pricing */
 .pricing-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start}
-.pricing-card{background:rgba(15,12,6,.85);padding:40px 32px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;position:relative;transition:all .3s}
+.pricing-card{background:rgba(8,4,20,.85);padding:40px 32px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;position:relative;transition:all .3s}
 .pricing-card:hover{transform:translateY(-4px);border-color:var(--border-strong);box-shadow:var(--card-hover)}
-.pricing-card.featured{border:1px solid var(--gold);background:linear-gradient(180deg,rgba(212,175,55,.08) 0%,rgba(15,12,6,.85) 100%);transform:scale(1.03);box-shadow:var(--glow)}
+.pricing-card.featured{border:1px solid var(--gold);background:linear-gradient(180deg,rgba(212,175,55,.06) 0%,rgba(8,4,20,.85) 100%);transform:scale(1.03);box-shadow:var(--glow)}
 .pricing-card.featured:hover{transform:scale(1.03) translateY(-4px);box-shadow:0 0 50px rgba(212,175,55,.15)}
 .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#0a0a0a;padding:4px 20px;border-radius:16px;font-size:.8rem;font-weight:700}
 .pricing-card h3{font-size:1.2rem;margin-bottom:12px;color:var(--text)}
@@ -117,7 +117,7 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 
 /* Contact Cards */
 .contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
-.contact-card{background:rgba(15,12,6,.85);padding:40px 28px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:16px}
+.contact-card{background:rgba(8,4,20,.85);padding:40px 28px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:16px}
 .contact-card:hover{border-color:var(--border-strong);transform:translateY(-4px);box-shadow:var(--card-hover)}
 .contact-card.featured-contact{border-color:var(--gold);box-shadow:var(--glow)}
 .contact-card.featured-contact:hover{box-shadow:0 0 50px rgba(212,175,55,.2)}
@@ -131,7 +131,7 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 /* Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s}
 .modal-overlay.active{opacity:1;visibility:visible}
-.modal{background:rgba(12,10,6,.97);border:1px solid var(--border-strong);border-radius:var(--radius);padding:48px 40px;max-width:440px;width:90%;position:relative;transform:translateY(20px);transition:transform .3s}
+.modal{background:rgba(10,5,25,.97);border:1px solid var(--border-strong);border-radius:var(--radius);padding:48px 40px;max-width:440px;width:90%;position:relative;transform:translateY(20px);transition:transform .3s}
 .modal-overlay.active .modal{transform:translateY(0)}
 .modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--text-muted);font-size:1.8rem;cursor:pointer;line-height:1;transition:color .2s}
 .modal-close:hover{color:var(--gold)}
@@ -173,7 +173,7 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 /* ===== Starfield Background (Pure CSS) ===== */
 .starfield {
   position: fixed; inset: 0; z-index: 0;
-  background: radial-gradient(ellipse at 50% 30%, rgba(40,30,10,.5) 0%, rgba(10,8,4,1) 70%);
+  background: radial-gradient(ellipse at 50% 30%, rgba(20,10,60,.6) 0%, rgba(5,2,20,1) 70%);
   overflow: hidden; pointer-events: none;
 }
 .star-layer {
@@ -195,24 +195,24 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
   --dur: 3s; animation-delay: 0s;
 }
 .star-layer-2 {
-  width: 2px; height: 2px; background: #D4AF37;
+  width: 2px; height: 2px; background: #aaccff;
   box-shadow:
-    8vw 10vh #D4AF37, 22vw 22vh #F0D060, 35vw 8vh #D4AF37, 60vw 15vh #F0D060,
-    78vw 20vh #D4AF37, 5vw 35vh #F0D060, 28vw 42vh #D4AF37, 45vw 55vh #F0D060,
-    68vw 38vh #D4AF37, 85vw 50vh #F0D060, 15vw 65vh #D4AF37, 32vw 72vh #F0D060,
-    55vw 80vh #D4AF37, 75vw 68vh #F0D060, 92vw 82vh #D4AF37, 20vw 90vh #F0D060,
-    48vw 18vh #D4AF37, 72vw 28vh #F0D060, 88vw 42vh #D4AF37, 12vw 52vh #F0D060,
-    38vw 62vh #D4AF37, 58vw 70vh #F0D060, 82vw 58vh #D4AF37, 95vw 72vh #F0D060,
-    42vw 88vh #D4AF37, 10vw 78vh #F0D060, 65vw 48vh #D4AF37, 25vw 85vh #F0D060;
+    8vw 10vh #aaccff, 22vw 22vh #ccddff, 35vw 8vh #aaccff, 60vw 15vh #ccddff,
+    78vw 20vh #aaccff, 5vw 35vh #ccddff, 28vw 42vh #aaccff, 45vw 55vh #ccddff,
+    68vw 38vh #aaccff, 85vw 50vh #ccddff, 15vw 65vh #aaccff, 32vw 72vh #ccddff,
+    55vw 80vh #aaccff, 75vw 68vh #ccddff, 92vw 82vh #aaccff, 20vw 90vh #ccddff,
+    48vw 18vh #aaccff, 72vw 28vh #ccddff, 88vw 42vh #aaccff, 12vw 52vh #ccddff,
+    38vw 62vh #aaccff, 58vw 70vh #ccddff, 82vw 58vh #aaccff, 95vw 72vh #ccddff,
+    42vw 88vh #aaccff, 10vw 78vh #ccddff, 65vw 48vh #aaccff, 25vw 85vh #ccddff;
   --dur: 4.5s; animation-delay: -1.5s;
 }
 .star-layer-3 {
-  width: 2.5px; height: 2.5px; background: #F0D060;
+  width: 2.5px; height: 2.5px; background: #ffcc88;
   box-shadow:
-    15vw 8vh #F0D060, 45vw 25vh #D4AF37, 72vw 12vh #F0D060, 88vw 35vh #D4AF37,
-    8vw 48vh #F0D060, 32vw 55vh #D4AF37, 55vw 42vh #F0D060, 78vw 62vh #D4AF37,
-    95vw 55vh #F0D060, 22vw 75vh #D4AF37, 42vw 82vh #F0D060, 68vw 92vh #D4AF37,
-    18vw 28vh #F0D060, 58vw 18vh #D4AF37, 82vw 72vh #F0D060, 38vw 38vh #D4AF37;
+    15vw 8vh #ffcc88, 45vw 25vh #ffcc88, 72vw 12vh #ffcc88, 88vw 35vh #ffcc88,
+    8vw 48vh #ffcc88, 32vw 55vh #ffcc88, 55vw 42vh #ffcc88, 78vw 62vh #ffcc88,
+    95vw 55vh #ffcc88, 22vw 75vh #ffcc88, 42vw 82vh #ffcc88, 68vw 92vh #ffcc88,
+    18vw 28vh #ffcc88, 58vw 18vh #ffcc88, 82vw 72vh #ffcc88, 38vw 38vh #ffcc88;
   --dur: 6s; animation-delay: -2s;
 }
 @keyframes twinkle {
