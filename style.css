@@ -169,3 +169,73 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
   .pricing-card.featured:hover{transform:translateY(-4px)}
   .modal{padding:36px 24px}
 }
+
+/* ===== Starfield Background (Pure CSS) ===== */
+.starfield {
+  position: fixed; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(20,10,60,.6) 0%, rgba(5,2,20,1) 70%);
+  overflow: hidden; pointer-events: none;
+}
+.star-layer {
+  position: absolute; border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite;
+}
+.star-layer-1 {
+  width: 1.5px; height: 1.5px; background: #fff;
+  box-shadow:
+    10vw 5vh #fff, 25vw 12vh #fff, 40vw 3vh #fff, 55vw 18vh #fff,
+    70vw 8vh #fff, 85vw 15vh #fff, 15vw 28vh #fff, 30vw 35vh #fff,
+    50vw 25vh #fff, 65vw 40vh #fff, 80vw 30vh #fff, 5vw 45vh #fff,
+    20vw 55vh #fff, 38vw 48vh #fff, 58vw 60vh #fff, 72vw 52vh #fff,
+    90vw 65vh #fff, 12vw 72vh #fff, 33vw 80vh #fff, 48vw 75vh #fff,
+    63vw 85vh #fff, 78vw 78vh #fff, 92vw 90vh #fff, 8vw 88vh #fff,
+    22vw 15vh #fff, 44vw 8vh #fff, 68vw 22vh #fff, 82vw 38vh #fff,
+    18vw 42vh #fff, 52vw 50vh #fff, 75vw 68vh #fff, 95vw 45vh #fff,
+    28vw 65vh #fff, 42vw 32vh #fff, 88vw 55vh #fff, 62vw 92vh #fff,
+    3vw 20vh #fff, 36vw 70vh #fff, 55vw 35vh #fff, 70vw 95vh #fff;
+  --dur: 3s; animation-delay: 0s;
+}
+.star-layer-2 {
+  width: 2px; height: 2px; background: #aaccff;
+  box-shadow:
+    8vw 10vh #aaccff, 22vw 22vh #ccddff, 35vw 8vh #aaccff, 60vw 15vh #ccddff,
+    78vw 20vh #aaccff, 5vw 35vh #ccddff, 28vw 42vh #aaccff, 45vw 55vh #ccddff,
+    68vw 38vh #aaccff, 85vw 50vh #ccddff, 15vw 65vh #aaccff, 32vw 72vh #ccddff,
+    55vw 80vh #aaccff, 75vw 68vh #ccddff, 92vw 82vh #aaccff, 20vw 90vh #ccddff,
+    48vw 18vh #aaccff, 72vw 28vh #ccddff, 88vw 42vh #aaccff, 12vw 52vh #ccddff,
+    38vw 62vh #aaccff, 58vw 70vh #ccddff, 82vw 58vh #aaccff, 95vw 72vh #ccddff,
+    42vw 88vh #aaccff, 10vw 78vh #ccddff, 65vw 48vh #aaccff, 25vw 85vh #ccddff;
+  --dur: 4.5s; animation-delay: -1.5s;
+}
+.star-layer-3 {
+  width: 2.5px; height: 2.5px; background: #ffcc88;
+  box-shadow:
+    15vw 8vh #ffcc88, 45vw 25vh #ffcc88, 72vw 12vh #ffcc88, 88vw 35vh #ffcc88,
+    8vw 48vh #ffcc88, 32vw 55vh #ffcc88, 55vw 42vh #ffcc88, 78vw 62vh #ffcc88,
+    95vw 55vh #ffcc88, 22vw 75vh #ffcc88, 42vw 82vh #ffcc88, 68vw 92vh #ffcc88,
+    18vw 28vh #ffcc88, 58vw 18vh #ffcc88, 82vw 72vh #ffcc88, 38vw 38vh #ffcc88;
+  --dur: 6s; animation-delay: -2s;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+.shooting-star {
+  position: absolute; width: 2px; height: 2px; background: #fff;
+  border-radius: 50%; opacity: 0;
+  animation: shoot var(--shoot-dur) linear infinite;
+}
+.shooting-star::after {
+  content: ''; position: absolute; top: 50%; transform: translateY(-50%);
+  width: var(--tail, 80px); height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,.8), transparent);
+}
+.s1 { top: 10%; left: 80%; --shoot-dur: 8s; --tail: 100px; animation-delay: 0s; }
+.s2 { top: 30%; left: 60%; --shoot-dur: 12s; --tail: 70px; animation-delay: 3s; }
+.s3 { top: 20%; left: 90%; --shoot-dur: 10s; --tail: 90px; animation-delay: 6s; }
+@keyframes shoot {
+  0% { transform: translate(0,0) rotate(-35deg); opacity: 0; }
+  2% { opacity: 1; }
+  8% { transform: translate(-300px, 150px) rotate(-35deg); opacity: 1; }
+  10% { opacity: 0; }
+  100% { transform: translate(-400px, 200px) rotate(-35deg); opacity: 0; }
+}
