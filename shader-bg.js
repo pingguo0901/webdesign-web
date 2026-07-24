@@ -1,128 +1,132 @@
-/* WebHub — Starry Sky Shader Background */
-
+/* WebHub — Futuristic Starfield Shader */
 (function() {
+  'use strict';
   try {
-  const canvas = document.createElement('canvas');
-  canvas.id = 'shader-bg';
-  canvas.style.cssText = 'position:fixed;inset:0;z-index:0;pointer-events:none;';
-  document.body.prepend(canvas);
+    const c = document.createElement('canvas');
+    c.style.cssText = 'position:fixed;inset:0;z-index:-1;display:block';
+    document.body.prepend(c);
 
-  const gl = canvas.getContext('webgl2', { alpha: false });
-  if (!gl) { canvas.style.display = 'none'; return; }
+    const gl = c.getContext('webgl2', { alpha: false }) || c.getContext('webgl');
+    if (!gl) return;
 
-  const vertSrc = `#version 300 es
-precision highp float;
-layout(location=0) in vec2 a_pos;
-void main(){ gl_Position=vec4(a_pos,0.0,1.0); }`;
+    const isGL2 = !gl.getParameter(gl.VERSION).includes('2.0');
 
-  const fragSrc = `#version 300 es
-precision highp float;
-out vec4 fragColor;
-uniform vec2 u_res;
-uniform float u_time;
+    const vs = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vs, 'attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}');
+    gl.compileShader(vs);
+    if (!gl.getShaderParameter(vs, gl.COMPILE_STATUS)) return;
 
-float hash(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
+    const fs = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fs, (isGL2 ? '#version 300 es\nprecision highp float;\nout vec4 O;\n' : 'precision highp float;\n') + `
+uniform vec2 r;
+uniform float t;
 
-float star(vec2 uv, float seed, float size, float speed){
-  vec2 pos=vec2(hash(vec2(seed,0.0)),hash(vec2(0.0,seed)));
-  vec2 starPos=pos*2.0-1.0;
-  pos.x+=u_time*speed*hash(vec2(seed,seed));
-  pos=fract(pos);
-  vec2 starUV=uv-starPos*2.0+1.0;
-  float d=length(starUV*starUV*starUV)*10.0;
-  float twinkle=sin(u_time*3.0+seed*100.0)*0.3+0.7;
-  return smoothstep(1.2,0.0,d/size)*twinkle;
-}
+float H(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}
+float N(vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.-2.*f);return mix(mix(H(i),H(i+vec2(1,0)),u.x),mix(H(i+vec2(0,1)),H(i+vec2(1,1)),u.x),u.y);}
 
 void main(){
-  vec2 uv=(gl_FragCoord.xy-0.5*u_res)/min(u_res.x,u_res.y);
-  float t=u_time;
+  vec2 uv=(gl_FragCoord.xy-.5*r)/min(r.x,r.y);
+  vec2 q=gl_FragCoord.xy/r;
 
-  // Deep space gradient
-  vec3 col=mix(vec3(0.01,0.01,0.08),vec3(0.02,0.02,0.15),uv.y*0.5+0.5);
+  // Deep space nebula — blue/purple tones
+  vec3 col=vec3(0.01,0.005,0.03);
+  col+=vec3(0.02,0.04,0.12)*N(uv*0.5+t*0.02)*2.;
+  col+=vec3(0.06,0.02,0.1)*N(uv*0.7-vec2(t*0.015,0.))*1.8;
+  col+=vec3(0.03,0.06,0.08)*N(uv*0.35+vec2(0.,t*0.01))*1.5;
 
-  // Nebula clouds
-  float n1=hash(floor(uv*3.0+t*0.05));
-  float nebula=smoothstep(0.7,0.0,length(uv-vec2(0.3-n1*0.6,0.1+n1*0.2)));
-  col+=vec3(0.04,0.02,0.12)*nebula*0.5;
-
-  float n2=hash(floor(uv*2.5-t*0.03));
-  float nebula2=smoothstep(0.8,0.0,length(uv-vec2(-0.4+n2*0.8,-0.3+n2*0.6)));
-  col+=vec3(0.06,0.03,0.08)*nebula2*0.4;
-
-  // Stars — layers of different sizes and speeds
-  for(float i=0.0;i<60.0;i++){
-    float s=200.0+mod(i,6.0)*100.0;
-    col+=vec3(0.9,0.95,1.0)*star(uv,i,s,0.02+i*0.001)*0.8;
+  // Stars — 3 layers
+  for(int L=0;L<3;L++){
+    float s=pow(2.,float(L));
+    vec2 grid=floor(uv*s*vec2(16.,9.))+0.5;
+    vec2 id=grid/s/vec2(16.,9.);
+    for(int x=-1;x<=1;x++)
+    for(int y=-1;y<=1;y++){
+      vec2 cell=id+vec2(float(x),float(y))/s/vec2(16.,9.);
+      float h=H(cell*float(100+L*31));
+      vec2 off=vec2(H(cell*float(200+L*47))-.5,H(cell*float(300+L*59))-.5)*0.55;
+      vec2 sp=cell+off/s/vec2(16.,9.);
+      float d=length(uv-sp);
+      float sz=0.0018+0.0025*h/s;
+      float br=h*h*h;
+      float tw=sin(t*(2.+h*3.)+h*6.28)*.25+.75;
+      float a=smoothstep(sz,sz*.2,d);
+      a*=br*tw;
+      // Cool → warm star colors
+      float tt=H(cell*400.);
+      vec3 sc=mix(vec3(0.5,0.8,1.0),vec3(1.0,0.7,0.5),tt);
+      sc=mix(sc,vec3(1.0),h*.3);
+      col+=sc*a*1.0;
+    }
   }
 
-  // Bright big stars
-  for(float i=0.0;i<15.0;i++){
-    col+=vec3(1.0,0.95,0.85)*star(uv,i+1000.0,100.0+500.0*i,0.005)*0.9;
+  // Big bright stars (fewer)
+  for(int i=0;i<20;i++){
+    float fi=float(i);
+    vec2 sp=vec2(H(vec2(fi,0.))*2.-1.,H(vec2(0.,fi))*2.-1.)*1.2;
+    float d=length(uv-sp);
+    float sz=0.003+0.005*H(vec2(fi,fi));
+    float tw=sin(t*(1.5+H(vec2(fi,fi))*2.)+fi)*.3+.7;
+    float a=exp(-d*d/(sz*sz))*tw*H(vec2(fi,fi+1.));
+    vec3 sc=mix(vec3(0.6,0.9,1.),vec3(1.,0.85,0.5),H(vec2(fi,fi+2.)));
+    col+=sc*a*0.7;
   }
 
-  // Blue-white bright stars
-  for(float i=0.0;i<8.0;i++){
-    col+=vec3(0.7,0.8,1.0)*star(uv,i+2000.0,50.0+400.0*i,0.008)*1.0;
+  // Shooting stars
+  float st=mod(t*.25,22.);
+  for(int j=0;j<2;j++){
+    float fj=float(j)*11.;
+    float sf=mod(st+fj,22.);
+    vec2 pos=vec2(H(vec2(fj,1.))*.7,H(vec2(fj,2.))*.4-.1);
+    float shoot=exp(-abs(length(uv-pos-sf*0.04)-sf*0.015)*120.);
+    shoot*=step(0.,sf)*step(sf,18.)*smoothstep(18.,16.,sf);
+    col+=vec3(0.8,0.9,1.)*shoot*.8;
   }
+
+  // Subtle scan lines for future-tech feel
+  col+=sin(q.y*800.)*0.003;
 
   // Vignette
-  float vig=1.0-smoothstep(0.3,1.5,length(uv));
-  col*=vig;
+  col*=1.-length(uv)*0.35;
 
-  fragColor=vec4(col,1.0);
-}`;
+  ${isGL2 ? 'O' : 'gl_FragColor'}=vec4(col,1);
+}`);
+    gl.compileShader(fs);
+    if (!gl.getShaderParameter(fs, gl.COMPILE_STATUS)) return;
 
-  function compile(type, src) {
-    const sh = gl.createShader(type);
-    gl.shaderSource(sh, src);
-    gl.compileShader(sh);
-    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
-      throw new Error(gl.getShaderInfoLog(sh) || 'shader error');
+    const pg = gl.createProgram();
+    gl.attachShader(pg, vs); gl.attachShader(pg, fs);
+    gl.linkProgram(pg);
+    if (!gl.getProgramParameter(pg, gl.LINK_STATUS)) return;
+    gl.useProgram(pg);
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]), gl.STATIC_DRAW);
+    const a = gl.getAttribLocation(pg, 'p');
+    gl.enableVertexAttribArray(a);
+    gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
+
+    const uR = gl.getUniformLocation(pg, 'r');
+    const uT = gl.getUniformLocation(pg, 't');
+
+    function size() {
+      const px = Math.max(1, Math.min(2, devicePixelRatio || 1));
+      const w = Math.floor((c.clientWidth || innerWidth) * px);
+      const h = Math.floor((c.clientHeight || innerHeight) * px);
+      if (c.width !== w || c.height !== h) {
+        c.width = w; c.height = h;
+        gl.viewport(0, 0, w, h);
+      }
     }
-    return sh;
-  }
 
-  const vs = compile(gl.VERTEX_SHADER, vertSrc);
-  const fs = compile(gl.FRAGMENT_SHADER, fragSrc);
-  const prog = gl.createProgram();
-  gl.attachShader(prog, vs);
-  gl.attachShader(prog, fs);
-  gl.linkProgram(prog);
-  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-    throw new Error(gl.getProgramInfoLog(prog));
-  }
-  gl.useProgram(prog);
+    (function draw(now) {
+      size();
+      gl.uniform2f(uR, c.width, c.height);
+      gl.uniform1f(uT, now * 0.001);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      requestAnimationFrame(draw);
+    })(performance.now());
 
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
-  gl.enableVertexAttribArray(0);
-  gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
-
-  const uRes = gl.getUniformLocation(prog, 'u_res');
-  const uTime = gl.getUniformLocation(prog, 'u_time');
-
-  function resize() {
-    const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-    const w = Math.floor((canvas.clientWidth || window.innerWidth) * dpr);
-    const h = Math.floor((canvas.clientHeight || window.innerHeight) * dpr);
-    if (canvas.width !== w || canvas.height !== h) {
-      canvas.width = w;
-      canvas.height = h;
-      gl.viewport(0, 0, w, h);
-    }
-  }
-
-  function draw(now) {
-    resize();
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.uniform1f(uTime, now * 0.001);
-    gl.drawArrays(gl.TRIANGLES, 0, 6);
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize, { passive: true });
-  requestAnimationFrame(draw);
-  } catch(e) { console.warn('Shader bg failed, continuing without it'); }
+    addEventListener('resize', size, { passive: true });
+  } catch(e) {}
 })();
