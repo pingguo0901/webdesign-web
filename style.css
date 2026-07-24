@@ -79,6 +79,7 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 
 /* Cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.cards-2col{grid-template-columns:repeat(2,1fr)}
 .card{background:var(--bg-card);padding:32px 28px;border-radius:var(--radius);border:1px solid var(--border);transition:all .3s;position:relative;overflow:hidden}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border-strong),transparent);opacity:0;transition:opacity .3s}
 .card:hover::before{opacity:1}
@@ -163,6 +164,7 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
   .hero{padding:120px 24px 72px}
   .hero h1{font-size:2rem}
   .contact-cards{grid-template-columns:1fr;max-width:400px}
+  .cards-2col{grid-template-columns:1fr}
   .pricing-card.featured{transform:none}
   .pricing-card.featured:hover{transform:translateY(-4px)}
   .modal{padding:36px 24px}
