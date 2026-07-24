@@ -72,18 +72,18 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 .btn-outline:hover{background:rgba(212,175,55,.1);border-color:var(--gold);box-shadow:0 0 24px rgba(212,175,55,.1)}
 
 /* Sections */
-.section{padding:100px 24px;position:relative;z-index:1;background:rgba(5,3,15,.75)}
-.section-alt{background:rgba(8,5,20,.65)}
+.section{padding:100px 24px;position:relative;z-index:1;background:transparent}
+.section-alt{background:transparent}
 .section-title{font-size:2rem;font-weight:800;text-align:center;margin-bottom:12px;color:var(--text)}
 .section-desc{text-align:center;color:var(--text-light);font-size:1.05rem;margin-bottom:56px}
 
 /* Cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
 .cards-2col{grid-template-columns:repeat(2,1fr)}
-.card{background:var(--bg-card);padding:32px 28px;border-radius:var(--radius);border:1px solid var(--border);transition:all .3s;position:relative;overflow:hidden}
+.card{background:rgba(8,4,20,.85);padding:32px 28px;border-radius:var(--radius);border:1px solid var(--border);transition:all .3s;position:relative;overflow:hidden}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border-strong),transparent);opacity:0;transition:opacity .3s}
 .card:hover::before{opacity:1}
-.card:hover{transform:translateY(-4px);background:var(--bg-card-hover);border-color:var(--border-strong);box-shadow:var(--card-hover)}
+.card:hover{transform:translateY(-4px);background:rgba(12,6,30,.9);border-color:var(--border-strong);box-shadow:var(--card-hover)}
 .card-icon{font-size:2.5rem;margin-bottom:16px}
 .card h3{font-size:1.15rem;margin-bottom:8px;color:var(--text)}
 .card p{color:var(--text-light);font-size:.92rem;line-height:1.7}
@@ -102,9 +102,9 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 
 /* Pricing */
 .pricing-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start}
-.pricing-card{background:var(--bg-card);padding:40px 32px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;position:relative;transition:all .3s}
+.pricing-card{background:rgba(8,4,20,.85);padding:40px 32px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;position:relative;transition:all .3s}
 .pricing-card:hover{transform:translateY(-4px);border-color:var(--border-strong);box-shadow:var(--card-hover)}
-.pricing-card.featured{border:1px solid var(--gold);background:linear-gradient(180deg,rgba(212,175,55,.05) 0%,var(--bg-card) 100%);transform:scale(1.03);box-shadow:var(--glow)}
+.pricing-card.featured{border:1px solid var(--gold);background:linear-gradient(180deg,rgba(212,175,55,.06) 0%,rgba(8,4,20,.85) 100%);transform:scale(1.03);box-shadow:var(--glow)}
 .pricing-card.featured:hover{transform:scale(1.03) translateY(-4px);box-shadow:0 0 50px rgba(212,175,55,.15)}
 .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#0a0a0a;padding:4px 20px;border-radius:16px;font-size:.8rem;font-weight:700}
 .pricing-card h3{font-size:1.2rem;margin-bottom:12px;color:var(--text)}
@@ -117,7 +117,7 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 
 /* Contact Cards */
 .contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
-.contact-card{background:var(--bg-card);padding:40px 28px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:16px}
+.contact-card{background:rgba(8,4,20,.85);padding:40px 28px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:16px}
 .contact-card:hover{border-color:var(--border-strong);transform:translateY(-4px);box-shadow:var(--card-hover)}
 .contact-card.featured-contact{border-color:var(--gold);box-shadow:var(--glow)}
 .contact-card.featured-contact:hover{box-shadow:0 0 50px rgba(212,175,55,.2)}
@@ -131,7 +131,7 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 /* Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s}
 .modal-overlay.active{opacity:1;visibility:visible}
-.modal{background:var(--bg-card);border:1px solid var(--border-strong);border-radius:var(--radius);padding:48px 40px;max-width:440px;width:90%;position:relative;transform:translateY(20px);transition:transform .3s}
+.modal{background:rgba(10,5,25,.97);border:1px solid var(--border-strong);border-radius:var(--radius);padding:48px 40px;max-width:440px;width:90%;position:relative;transform:translateY(20px);transition:transform .3s}
 .modal-overlay.active .modal{transform:translateY(0)}
 .modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--text-muted);font-size:1.8rem;cursor:pointer;line-height:1;transition:color .2s}
 .modal-close:hover{color:var(--gold)}
@@ -151,7 +151,7 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 .modal-btn-text small{font-size:.8rem;color:var(--text-muted)}
 
 /* Footer */
-.footer{background:#050505;color:var(--text-muted);text-align:center;padding:40px 24px;font-size:.88rem;border-top:1px solid var(--border)}
+.footer{background:transparent;color:var(--text-muted);text-align:center;padding:40px 24px;font-size:.88rem;border-top:1px solid rgba(255,255,255,.06)}
 .footer p+p{margin-top:4px}
 
 /* Gold divider */
