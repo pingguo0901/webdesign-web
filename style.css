@@ -131,7 +131,7 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 /* Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s}
 .modal-overlay.active{opacity:1;visibility:visible}
-.modal{background:rgba(10,5,25,.97);border:1px solid var(--border-strong);border-radius:var(--radius);padding:48px 40px;max-width:440px;width:90%;position:relative;transform:translateY(20px);transition:transform .3s}
+.modal{background:rgba(12,10,6,.97);border:1px solid var(--border-strong);border-radius:var(--radius);padding:48px 40px;max-width:440px;width:90%;position:relative;transform:translateY(20px);transition:transform .3s}
 .modal-overlay.active .modal{transform:translateY(0)}
 .modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--text-muted);font-size:1.8rem;cursor:pointer;line-height:1;transition:color .2s}
 .modal-close:hover{color:var(--gold)}
@@ -220,22 +220,30 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
   50% { opacity: 1; }
 }
 .shooting-star {
-  position: absolute; width: 2px; height: 2px; background: #fff;
+  position: absolute; width: 2px; height: 2px; background: #F0D060;
   border-radius: 50%; opacity: 0;
   animation: shoot var(--shoot-dur) linear infinite;
 }
 .shooting-star::after {
   content: ''; position: absolute; top: 50%; transform: translateY(-50%);
   width: var(--tail, 80px); height: 1px;
-  background: linear-gradient(90deg, rgba(255,255,255,.8), transparent);
+  background: linear-gradient(90deg, rgba(240,208,96,.9), transparent);
 }
-.s1 { top: 10%; left: 80%; --shoot-dur: 8s; --tail: 100px; animation-delay: 0s; }
-.s2 { top: 30%; left: 60%; --shoot-dur: 12s; --tail: 70px; animation-delay: 3s; }
-.s3 { top: 20%; left: 90%; --shoot-dur: 10s; --tail: 90px; animation-delay: 6s; }
+.s1 { top: 5%; left: 70%; --shoot-dur: 3s; --tail: 80px; animation-delay: 0s; }
+.s2 { top: 12%; left: 85%; --shoot-dur: 3s; --tail: 90px; animation-delay: 0.3s; }
+.s3 { top: 8%; left: 60%; --shoot-dur: 3s; --tail: 70px; animation-delay: 0.6s; }
+.s4 { top: 18%; left: 90%; --shoot-dur: 3s; --tail: 100px; animation-delay: 0.9s; }
+.s5 { top: 25%; left: 55%; --shoot-dur: 3s; --tail: 85px; animation-delay: 1.2s; }
+.s6 { top: 15%; left: 75%; --shoot-dur: 3s; --tail: 75px; animation-delay: 1.5s; }
+.s7 { top: 30%; left: 95%; --shoot-dur: 3s; --tail: 95px; animation-delay: 1.8s; }
+.s8 { top: 22%; left: 50%; --shoot-dur: 3s; --tail: 65px; animation-delay: 2.1s; }
+.s9 { top: 35%; left: 80%; --shoot-dur: 3s; --tail: 110px; animation-delay: 2.4s; }
+.s10 { top: 10%; left: 65%; --shoot-dur: 3s; --tail: 80px; animation-delay: 2.7s; }
 @keyframes shoot {
-  0% { transform: translate(0,0) rotate(-35deg); opacity: 0; }
-  2% { opacity: 1; }
-  8% { transform: translate(-300px, 150px) rotate(-35deg); opacity: 1; }
-  10% { opacity: 0; }
-  100% { transform: translate(-400px, 200px) rotate(-35deg); opacity: 0; }
+  0% { transform: translate(0,0) rotate(-30deg); opacity: 0; }
+  3% { opacity: 1; }
+  10% { transform: translate(-350px, 200px) rotate(-30deg); opacity: 0.8; }
+  13% { opacity: 0; }
+  20% { transform: translate(-500px, 280px) rotate(-30deg); opacity: 0; }
+  100% { transform: translate(-500px, 280px) rotate(-30deg); opacity: 0; }
 }
