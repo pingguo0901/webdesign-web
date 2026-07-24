@@ -93,6 +93,10 @@ html[lang="en"] .lang-switch .lang-en{display:inline}
 .card-img.placeholder{width:100%;height:160px;background:var(--bg-alt);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:16px;border:1px solid var(--border)}
 .price{display:inline-block;margin-top:12px;font-weight:700;color:var(--gold);font-size:1.1rem}
 
+/* About text block */
+.about-text-block{text-align:center;max-width:800px;margin:0 auto;padding:40px 20px}
+.about-text-block p{font-size:1.15rem;color:var(--text-light);line-height:2;letter-spacing:.3px}
+
 /* Steps */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px}
 .step{text-align:center;padding:24px}
